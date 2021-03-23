@@ -1,0 +1,22 @@
+.home-content {
+    $sidebar-width: 200px;
+
+    background-color: rgb(255, 255, 255);
+    height: 49vh;
+    width: 70vw;
+    border: 5px solid black;
+
+    &__sidebar {
+        height: 100%;
+        display: block;
+        background-color: rgb(255, 0, 0);
+        width: $sidebar-width;
+        float: left;
+    }
+
+    &__content {
+        float: right;
+        width: calc(100% - #{$sidebar-width});
+        height: 100%;
+    }
+}

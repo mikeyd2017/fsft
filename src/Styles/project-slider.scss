@@ -1,0 +1,44 @@
+.projectslider-content {
+    $button-height: 50px;
+    $button-width: 50px;
+    $menu-width: 50px;
+
+    width: 100%;
+    height: 100%;
+
+    &__menu {
+        width: $menu-width;
+        height: 100%;
+        float: right;
+        background-color: gray;
+    }
+
+    &__project {
+        width: calc(100% - #{$menu-width});
+        height: 100%;
+        position: relative;
+        flex-direction: row;
+        overflow: hidden;
+        &-rightbutton {
+            position: absolute;
+            justify-content: center;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        &-leftbutton {
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        &-rightbutton > svg {
+            width: 50px;
+            height: 50px;
+        }
+        &-leftbutton > svg {
+            width: 50px;
+            height: 50px;
+        }
+    }
+}
