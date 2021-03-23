@@ -12,6 +12,13 @@
         background-color: rgb(255, 0, 0);
         width: $sidebar-width;
         float: left;
+
+        &-content {
+
+            &__linklist {
+
+            }
+        }
     }
 
     &__content {

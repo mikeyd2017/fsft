@@ -10,7 +10,31 @@ function ProjectSlider() {
     const [projectHeight, setProjectHeight] = useState(0);
     const [sliderMargin, setSliderTopMargin] = useState(0);
     let [projectCount, setProjectCount] = useState(0);
-    let [status, setStatus] = useState('idle');
+    const [status, setStatus] = useState('idle');
+    const [maxProjectCount, setMaxProjectCount] = useState(0);
+
+    useEffect(()=> {
+        setMaxProjectCount(projects.length);
+    });
+
+    const setProjectSize=()=>{
+        let projectDiv = document.querySelector('.projectslider-content__project');
+        console.log(projectDiv.clientHeight + "width: " + projectDiv.clientWidth);
+        let divWidth = projectDiv.clientWidth;
+        let divHeight = projectDiv.clientHeight;
+
+        setProjectHeight(divHeight);
+        setProjectWidth(divWidth);
+
+        setSliderTopMargin(-(projectCount * divHeight))
+        //Need to round the top margin to display the nearest project properly (on resize and first load)
+    }
+
+    useLayoutEffect(()=> {
+        setProjectSize();
+    }, []);
+
+    window.addEventListener('resize', setProjectSize);
 
     const getProjects = async () => {
         setStatus('fetching');
@@ -23,11 +47,9 @@ function ProjectSlider() {
             }
         }).then(async (res) => {
             if (res.ok) {
-                console.log(res);
                 const data = await res.json();
                 setStatus('processed');
                 setProjects(data.projects);
-                console.log(data);
             }
         });
     }
@@ -41,39 +63,26 @@ function ProjectSlider() {
         projectContainer.setAttribute("style", "margin-top: " + sliderMargin + "px;");
     }
 
-    const moveSliderUp=()=> {
-        setSliderTopMargin(sliderMargin + projectHeight);
-        setProjectCount(projectCount -= 1);
-    }
-
-    const moveSliderDown=()=> {
-        setSliderTopMargin(sliderMargin - projectHeight);
-        setProjectCount(projectCount += 1);
-    }
-
-    const setProjectSize=()=>{
-        let projectDiv = document.querySelector('.projectslider-content__project');
-        let divWidth = projectDiv.clientWidth;
-        let divHeight = projectDiv.clientHeight;
-
-        setProjectHeight(divHeight);
-        setProjectWidth(divWidth);
-
-        let projectsThatFit = Math.round(sliderMargin / divHeight);
-
-        //Need to round the top margin to display the nearest project properly (on resize and first load)
-    }
-
-    window.addEventListener('resize', setProjectSize)
-
     useEffect(()=>{
         setContainerTopMargin();
     },[sliderMargin]);
 
-    useLayoutEffect(()=> {
-        setProjectSize();
-    }, []);
+    const moveSliderUp=()=> {
+        if (projectCount > 0)
+        {
+            setSliderTopMargin(sliderMargin + projectHeight);
+            setProjectCount(projectCount -= 1);
+        }
+    }
 
+    const moveSliderDown=()=> {
+        if(projectCount < maxProjectCount - 1)
+        {
+            setSliderTopMargin(sliderMargin - projectHeight);
+            setProjectCount(projectCount += 1);
+        } 
+    }
+    
     return (
         <div className="projectslider-content">
             <div className="projectslider-content__menu">
