@@ -1,10 +1,15 @@
 .home-content {
     $sidebar-width: 200px;
 
-    background-color: rgb(255, 255, 255);
-    height: 49vh;
-    width: 70vw;
-    border: 5px solid black;
+    width: 90vw; /* 90% of viewport vidth */
+    height: 50.625vw; /* ratio = 9/16 * 90 = 50.625 */
+    background: pink;
+    max-height: 90vh;
+    max-width: 160vh; /* 16/9 * 90 = 160 */
+    margin: auto;
+    position: absolute;
+    top:0;bottom:0;
+    left:0;right:0;
 
     &__sidebar {
         height: 100%;

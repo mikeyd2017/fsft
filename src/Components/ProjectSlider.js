@@ -12,6 +12,7 @@ function ProjectSlider() {
     let [projectCount, setProjectCount] = useState(0);
     const [status, setStatus] = useState('idle');
     const [maxProjectCount, setMaxProjectCount] = useState(0);
+    const [showLoading, setLoading] = useState(false);
 
     useEffect(()=> {
         setMaxProjectCount(projects.length);
@@ -19,7 +20,6 @@ function ProjectSlider() {
 
     const setProjectSize=()=>{
         let projectDiv = document.querySelector('.projectslider-content__project');
-        console.log(projectDiv.clientHeight + "width: " + projectDiv.clientWidth);
         let divWidth = projectDiv.clientWidth;
         let divHeight = projectDiv.clientHeight;
 
@@ -32,13 +32,12 @@ function ProjectSlider() {
 
     useLayoutEffect(()=> {
         setProjectSize();
-    }, []);
+    }, [projects.length]);
 
     window.addEventListener('resize', setProjectSize);
 
     const getProjects = async () => {
         setStatus('fetching');
-
         await fetch('projects.json',
         {
             headers: {
@@ -48,8 +47,8 @@ function ProjectSlider() {
         }).then(async (res) => {
             if (res.ok) {
                 const data = await res.json();
-                setStatus('processed');
                 setProjects(data.projects);
+                setStatus('processed');
             }
         });
     }
@@ -89,12 +88,12 @@ function ProjectSlider() {
 
             </div>
 
-            <div className="projectslider-content__project">
+            <div className="projectslider-content__project fade-in">
                 <a href="#" className="projectslider-content__project-leftbutton" onClick={moveSliderUp}><IconContext.Provider value={{ color: "black"}}><AiFillCaretLeft/></IconContext.Provider></a>
                 <a href="#" className="projectslider-content__project-rightbutton" onClick={moveSliderDown}><IconContext.Provider value={{ color: "black"}}><AiFillCaretRight/></IconContext.Provider></a>
                 <div className="projectslider-content__project-container">
-                    {status === "fetching" && <div>Loading</div>}
-                    {projects && projects.length > 0 && projects.map((project)=> <Project {...project} key={project.name} height={projectHeight} width={projectWidth}/>) }
+                    {status === "fetching" && <div id="spinner"></div>}
+                    {status === "processed" && projects && projects.length > 0 && projects.map((project)=> <Project {...project} key={project.name} height={projectHeight} width={projectWidth}/>) }
                 </div>
             </div>
             

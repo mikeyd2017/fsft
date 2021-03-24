@@ -1,4 +1,5 @@
 import '../Styles/home.scss';
+import '../Styles/animations.scss';
 import Information from '../Components/Information';
 import ProjectSlider from '../Components/ProjectSlider';
 import HomeSidebar from '../Components/HomeSidebar';
