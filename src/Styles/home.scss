@@ -21,7 +21,16 @@
         &-content {
 
             &__linklist {
+                list-style: none;
+                text-decoration: none;
 
+                & > li {
+                    padding-top: 5px;
+
+                    &:first-child {
+                        padding-top: 10px;
+                    }
+                }
             }
         }
     }

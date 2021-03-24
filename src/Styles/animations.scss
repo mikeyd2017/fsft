@@ -1,9 +1,19 @@
 .fade-in {
-    animation: fadeIn ease .3s;
-    -webkit-animation: fadeIn ease .3s;
-    -moz-animation: fadeIn ease .3s;
-    -o-animation: fadeIn ease .3s;
-    -ms-animation: fadeIn ease .3s;
+    animation: fadeIn ease 1s;
+    -webkit-animation: fadeIn ease 1s;
+    -moz-animation: fadeIn ease 1s;
+    -o-animation: fadeIn ease 1s;
+    -ms-animation: fadeIn ease 1s;
+}
+
+.arrows-fade-in {
+  animation: fadeIn ease 2s;
+  -webkit-animation: fadeIn ease 2s;
+  -moz-animation: fadeIn ease 2s;
+  -o-animation: fadeIn ease 2s;
+  -ms-animation: fadeIn ease 2s;
+  animation-delay: .75s;
+  animation-fill-mode: forwards;
 }
 
 @keyframes fadeIn {
@@ -61,3 +71,23 @@
       transform: rotate(360deg);
     }
   }
+
+  body {
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradient 25s ease infinite;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
