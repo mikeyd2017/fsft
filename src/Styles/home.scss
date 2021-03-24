@@ -1,9 +1,9 @@
 .home-content {
-    $sidebar-width: 200px;
+    $sidebar-width: 165px;
 
     width: 90vw; /* 90% of viewport vidth */
     height: 50.625vw; /* ratio = 9/16 * 90 = 50.625 */
-    background: pink;
+    background: rgb(46, 46, 46);
     max-height: 90vh;
     max-width: 160vh; /* 16/9 * 90 = 160 */
     margin: auto;
@@ -14,12 +14,14 @@
     &__sidebar {
         height: 100%;
         display: block;
-        background-color: rgb(255, 0, 0);
+        background-color: rgb(74, 74, 74);
         width: $sidebar-width;
         float: left;
 
         &-content {
-
+            height: calc(100% - 8px);
+            margin: 6px;
+            box-shadow: inset -1px 0 4px 0 #373737;
             &__linklist {
                 list-style: none;
                 text-decoration: none;
@@ -33,9 +35,10 @@
                     }
 
                     & > a {
-                        font-size: 20px;
+                        font-size: 15px;
                         font-weight: 400;
                         line-height: 20px;
+                        color: rgb(64, 230, 220);
 
                         & > svg {
                             vertical-align: middle;
