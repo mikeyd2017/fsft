@@ -1,8 +1,6 @@
 * {
-    margin-block-start: 0px;margin-block-end: 0px;
+    margin-block-start: 0px;margin-block-end: 0px;margin: 0; padding: 0; font-family: 'Raleway', sans-serif;
 }
-
-html,body{margin:0;padding:0;}
 
 ul{padding-inline-start:0px;}
 
@@ -16,7 +14,6 @@ a {
 
 button {
     appearance: auto;
-    -webkit-writing-mode: horizontal-tb !important;
     text-rendering: auto;
     color: transparent;
     letter-spacing: normal;
@@ -37,5 +34,9 @@ button {
     border-style: outset;
     border-color: none;
     border-image: initial;
+    outline: none;
+}
+
+:focus,:hover {
     outline: none;
 }

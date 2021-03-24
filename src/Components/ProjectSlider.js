@@ -1,4 +1,4 @@
-import { useEffect, useState, useLayoutEffect, useCallback } from "react";
+import { useEffect, useState, useLayoutEffect, useCallback} from "react";
 import Project from '../Components/Project';
 import {AiFillCaretLeft, AiFillCaretRight} from 'react-icons/ai';
 import { IconContext } from "react-icons";
@@ -12,13 +12,12 @@ function ProjectSlider() {
     let [projectCount, setProjectCount] = useState(0);
     const [status, setStatus] = useState('idle');
     const [maxProjectCount, setMaxProjectCount] = useState(0);
-    const [showLoading, setLoading] = useState(false);
 
     useEffect(()=> {
         setMaxProjectCount(projects.length);
     }, [projects]);
 
-    const setProjectSize=()=>{
+    const setProjectSize = useCallback(()=>{
         let projectDiv = document.querySelector('.projectslider-content__project');
         let divWidth = projectDiv.clientWidth;
         let divHeight = projectDiv.clientHeight;
@@ -27,12 +26,11 @@ function ProjectSlider() {
         setProjectWidth(divWidth);
 
         setSliderTopMargin(-(projectCount * divHeight))
-        //Need to round the top margin to display the nearest project properly (on resize and first load)
-    }
+    });
 
     useLayoutEffect(()=> {
         setProjectSize();
-    }, [projects]);
+    }, [setProjectSize]);
 
     window.addEventListener('resize', setProjectSize);
 
@@ -57,12 +55,11 @@ function ProjectSlider() {
         setTimeout(getProjects, 500);
     }, []);
 
-    const setContainerTopMargin=()=> {
-        let projectContainer = document.querySelector('.projectslider-content__project-container');
-        projectContainer.setAttribute("style", "margin-top: " + sliderMargin + "px;");
-    }
-
-    useEffect(()=>{
+    useEffect(()=> {
+        const setContainerTopMargin=()=> {
+            let projectContainer = document.querySelector('.projectslider-content__project-container');
+            projectContainer.setAttribute("style", "margin-top: " + sliderMargin + "px;");
+        }
         setContainerTopMargin();
     },[sliderMargin]);
 

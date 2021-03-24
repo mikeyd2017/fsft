@@ -26,9 +26,25 @@
 
                 & > li {
                     padding-top: 5px;
+                    margin-left: 15px;
 
                     &:first-child {
                         padding-top: 10px;
+                    }
+
+                    & > a {
+                        font-size: 20px;
+                        font-weight: 400;
+                        line-height: 20px;
+
+                        & > svg {
+                            vertical-align: middle;
+                        }
+    
+                        & > span {
+                            margin-left: 10px;
+                            vertical-align: middle;
+                        }
                     }
                 }
             }

@@ -8,9 +8,9 @@ export default function HomeSidebar() {
     return (
         <div className="home-content__sidebar-content">
                 <ul className="home-content__sidebar-content__linklist">
-                    <li><Link to="/home"><IconContext.Provider value={{ color: "white"}}><IoHome/></IconContext.Provider>Home</Link></li>
-                    <li><Link to="/information"><IconContext.Provider value={{ color: "white"}}><HiInformationCircle/></IconContext.Provider>Information</Link></li>
-                    <li><Link to="/project-slider"><IconContext.Provider value={{ color: "white"}}><ImBooks/></IconContext.Provider>Projects</Link></li>
+                    <li><Link to="/home"><IconContext.Provider value={{ color: "white"}}><IoHome/></IconContext.Provider><span>Home</span></Link></li>
+                    <li><Link to="/information"><IconContext.Provider value={{ color: "white"}}><HiInformationCircle/></IconContext.Provider><span>Information</span></Link></li>
+                    <li><Link to="/project-slider"><IconContext.Provider value={{ color: "white"}}><ImBooks/></IconContext.Provider><span>Projects</span></Link></li>
                 </ul>
         </div>
     );
