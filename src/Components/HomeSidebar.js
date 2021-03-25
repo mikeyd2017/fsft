@@ -3,6 +3,7 @@ import {ImBooks} from 'react-icons/im';
 import { IconContext } from "react-icons";
 import { IoHome } from "react-icons/io5";
 import {HiInformationCircle} from 'react-icons/hi';
+import {RiContactsBook2Fill} from 'react-icons/ri';
 
 export default function HomeSidebar() {
     return (
@@ -11,9 +12,10 @@ export default function HomeSidebar() {
                 
             </div>
             <ul className="home-content__sidebar-content__linklist">
-                <li><Link to="/home"><IconContext.Provider value={{ color: "#f3f3f3"}}><IoHome/></IconContext.Provider><span>Home</span></Link></li>
-                <li><Link to="/information"><IconContext.Provider value={{ color: "#f3f3f3"}}><HiInformationCircle/></IconContext.Provider><span>Information</span></Link></li>
-                <li><Link to="/project-slider"><IconContext.Provider value={{ color: "#f3f3f3"}}><ImBooks/></IconContext.Provider><span>Projects</span></Link></li>
+                <Link to="/"><li><IconContext.Provider value={{ color: "#f3f3f3"}}><IoHome/></IconContext.Provider><span>Home</span></li></Link>
+                <Link to="/project-slider"><li><IconContext.Provider value={{ color: "#f3f3f3"}}><ImBooks/></IconContext.Provider><span>Projects</span></li></Link>
+                <Link to="/contact"><li><IconContext.Provider value={{ color: "#f3f3f3"}}><RiContactsBook2Fill/></IconContext.Provider><span>Contact</span></li></Link>
+                <Link to="/information"><li><IconContext.Provider value={{ color: "#f3f3f3"}}><HiInformationCircle/></IconContext.Provider><span>Information</span></li></Link>
             </ul>
         </div>
     );

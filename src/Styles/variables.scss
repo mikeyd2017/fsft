@@ -1,3 +1,9 @@
 $light-blue: #42496596;
 $dark-blue: #21212f;
 $off-white: #f3f3f3;
+
+@mixin breakpoint($point) {
+      @media (max-width: $point) {
+          @content;
+      }
+}

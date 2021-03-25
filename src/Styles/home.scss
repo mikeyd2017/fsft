@@ -2,8 +2,6 @@
 @import 'animations.scss';
 
 .home-content {
-    $sidebar-width: 165px;
-
     width: 90vw; /* 90% of viewport vidth */
     height: 50.625vw; /* ratio = 9/16 * 90 = 50.625 */
     background: $dark-blue;
@@ -27,33 +25,53 @@
             &__portrait {
                 height: calc(135px + 5vw);
                 background-color: $off-white;
+                @include breakpoint(1100px) {
+                    display: none;
+                }
             }
             &__linklist {
                 list-style: none;
                 text-decoration: none;
-                padding-right: calc(5px + .4vw);
-                width: 100%;
+                padding-top: 30px;
 
-                & > li {
-                    padding-top: 2.5px;
-                    padding-bottom: 2.5px;
+                @include breakpoint(1100px) {
+                    padding-right: 0px;
+                    padding-top: 0px;
+                }
 
-                    &:hover {
-                        background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-                        background-size: 400% 400%;
-                        animation: gradient 10s ease infinite;
-                    }
+                & > a {
+                    font-weight: 200;
+                    color: $off-white;
 
-                    &:first-child {
-                        margin-top: 15px;
-                    }
+                    @include breakpoint(1100px) {
+                        width: 100%;
+                        text-align: center;
 
-                    & > a {
-                        font-weight: 600;
-                        color: $off-white;
-                        padding: 20px;
-                        
+                        &:nth-of-type(2) > li > svg {
+                            margin-left: 3px;
+                        }
+                        &:nth-of-type(3) > li > svg, &:nth-of-type(4) > li > svg {
+                            margin-left: -6px;
+                        }
+                    }        
+                    
+                    & > li {
+                        padding-top: 2.5px;
+                        padding-bottom: 2.5px;
+                        padding-left: 10px;
+                        padding-right: calc(5px + .4vw);
 
+                        @include breakpoint(1100px) {
+                            padding-left: 10px;
+                            padding-right: 10px;
+                            padding-bottom: 7px;
+                        }
+
+                        &:hover {
+                            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5,#e73c7e, #ee7752);
+                            background-size: 2000% 2000%;
+                            animation: gradient 17s ease infinite;
+                        }
 
                         & > svg {
                             vertical-align: middle;
@@ -62,6 +80,9 @@
                         & > span {
                             margin-left: 10px;
                             vertical-align: middle;
+                            @include breakpoint(1100px) {
+                                display: none;
+                            }
                         }
                     }
                 }
@@ -75,3 +96,10 @@
         height: 100%;
     }
 }
+
+@media screen and (max-width: 992px) {
+    body {
+      background-color: blue;
+    }
+  }
+  
