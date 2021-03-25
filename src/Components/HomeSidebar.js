@@ -7,11 +7,14 @@ import {HiInformationCircle} from 'react-icons/hi';
 export default function HomeSidebar() {
     return (
         <div className="home-content__sidebar-content">
-                <ul className="home-content__sidebar-content__linklist">
-                    <li><Link to="/home"><IconContext.Provider value={{ color: "white"}}><IoHome/></IconContext.Provider><span>Home</span></Link></li>
-                    <li><Link to="/information"><IconContext.Provider value={{ color: "white"}}><HiInformationCircle/></IconContext.Provider><span>Information</span></Link></li>
-                    <li><Link to="/project-slider"><IconContext.Provider value={{ color: "white"}}><ImBooks/></IconContext.Provider><span>Projects</span></Link></li>
-                </ul>
+            <div className="home-content__sidebar-content__portrait">
+                
+            </div>
+            <ul className="home-content__sidebar-content__linklist">
+                <li><Link to="/home"><IconContext.Provider value={{ color: "#f3f3f3"}}><IoHome/></IconContext.Provider><span>Home</span></Link></li>
+                <li><Link to="/information"><IconContext.Provider value={{ color: "#f3f3f3"}}><HiInformationCircle/></IconContext.Provider><span>Information</span></Link></li>
+                <li><Link to="/project-slider"><IconContext.Provider value={{ color: "#f3f3f3"}}><ImBooks/></IconContext.Provider><span>Projects</span></Link></li>
+            </ul>
         </div>
     );
 }
