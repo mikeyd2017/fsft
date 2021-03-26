@@ -20,6 +20,9 @@ function Home() {
                 </div>
 
                 <div className="home-content__content">
+                <div class="bg"></div>
+                <div class="bg bg2"></div>
+                <div class="bg bg3"></div>
                     <Switch>
                         <Route exact path="/">
 

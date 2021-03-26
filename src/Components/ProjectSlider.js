@@ -52,7 +52,7 @@ function ProjectSlider() {
 
     useEffect(()=> {
         setStatus('fetching');
-        setTimeout(getProjects, 500);
+        setTimeout(getProjects, 450);
     }, []);
 
     useEffect(()=> {
@@ -86,10 +86,10 @@ function ProjectSlider() {
             </div>
 
             <div className="projectslider-content__project">
-                <button className="projectslider-content__project-leftbutton arrows-fade-in" onClick={moveSliderUp}><IconContext.Provider value={{ color: "black"}}><AiFillCaretLeft/></IconContext.Provider></button>
-                <button className="projectslider-content__project-rightbutton arrows-fade-in" onClick={moveSliderDown}><IconContext.Provider value={{ color: "black"}}><AiFillCaretRight/></IconContext.Provider></button>
+                {status === "fetching" && <div id="spinner"></div>}
+                <button className="projectslider-content__project-leftbutton arrows-fade-in" onClick={moveSliderUp}><IconContext.Provider value={{ color: '#424965f8'}}><AiFillCaretLeft/></IconContext.Provider></button>
+                <button className="projectslider-content__project-rightbutton arrows-fade-in" onClick={moveSliderDown}><IconContext.Provider value={{ color: '#424965f8'}}><AiFillCaretRight/></IconContext.Provider></button>
                 <div className="projectslider-content__project-container">
-                    {status === "fetching" && <div id="spinner"></div>}
                     {status === "processed" && projects && projects.length > 0 && projects.map((project)=> <Project {...project} key={project.name} height={projectHeight} width={projectWidth}/>) }
                 </div>
             </div>
