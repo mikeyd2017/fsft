@@ -1,5 +1,6 @@
 @import 'variables.scss';
 @import 'animations.scss';
+@import 'mixins.scss';
 
 .home-content {
     width: 90vw; /* 90% of viewport vidth */
@@ -9,8 +10,7 @@
     max-width: 160vh; /* 16/9 * 90 = 160 */
     margin: auto;
     position: absolute;
-    top:0;bottom:0;
-    left:0;right:0;
+    top:0;bottom:0;left:0;right:0;
     opacity: .99;
 
     &__sidebar {
@@ -23,44 +23,15 @@
         position: relative;
         &-content {
             height: calc(100%);
-            // &__portrait {
-            //     height: calc(135px + 5vw);
-            //     background-color: $light-blue;
-            //     @include breakpoint(1100px) {
-            //         display: none;
-            //     }
-            // }
+
             &__linklist {
                 list-style: none;
                 text-decoration: none;
-                // padding-top: 30px;
-
-                @include breakpoint(1100px) {
-                    padding-right: 0px;
-                    padding-top: 0px;
-                }
 
                 & > a {
                     font-weight: 200;
                     font-size: calc(16px + .5vw);
                     color: $off-white;
-
-                    &:last-of-type > li {
-                        position: absolute;
-                        bottom: 0;
-                        left: 50%;
-                        transform: translateX(-50%);
-                        padding: 0px;
-                        padding-left: 20px;
-                        padding-right: 10px;
-                        @include breakpoint(1100px) {
-                            padding-right: 0px;
-                            padding-left: 0px;
-                            width: 100%;
-                        }
-
-                    }
-
 
                     &:nth-of-type(1) > li > span {
                         margin-left: 9px;
@@ -78,11 +49,31 @@
                         margin-left: -2px;
                     }
 
-                    @include breakpoint(1100px) {
+                    @include breakpoint($small-laptop) {
                         width: 100%;
                         text-align: center;
+
+                        &:nth-of-type(3) > li > svg {
+                            margin-left: -3px;
+                        }
                     }        
                     
+                    &:last-of-type > li {
+                        position: absolute;
+                        bottom: 0;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        padding-left: 20px;
+                        padding-right: 10px;
+
+                        @include breakpoint($small-laptop) {
+                            padding-right: 0px;
+                            padding-left: 0px;
+                            padding-bottom: 5px;
+                            width: 100%;
+                        }
+                    }
+
                     & > li {
                         padding-top: 2.5px;
                         padding-bottom: 2.5px;
@@ -90,7 +81,7 @@
                         padding-right: calc(5px + .4vw);
                         width: auto;
 
-                        @include breakpoint(1100px) {
+                        @include breakpoint($small-laptop) {
                             padding-left: 10px;
                             padding-right: 10px;
                             padding-bottom: 7px;
@@ -109,7 +100,8 @@
                         & > span {
                             margin-left: 7px;
                             vertical-align: middle;
-                            @include breakpoint(1100px) {
+                            
+                            @include breakpoint($small-laptop) {
                                 display: none;
                             }
                         }
@@ -126,9 +118,23 @@
     }
 }
 
-@media screen and (max-width: 992px) {
-    body {
-      background-color: blue;
-    }
-  }
+.bg {
+    animation:slide 8s ease-in-out infinite alternate;
+    background-image: linear-gradient(-60deg, $mid-gray 50%, $dark-gray 50%);
+    bottom:0;
+    left:-50%;
+    opacity:.5;
+    position:fixed;
+    right:-50%;
+    top:0;
+    z-index:-1;
+}
   
+.bg2 {
+    animation-direction:alternate-reverse;
+    animation-duration:9s;
+}
+  
+.bg3 {
+    animation-duration:11s;
+}

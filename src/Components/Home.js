@@ -1,5 +1,3 @@
-import '../Styles/home.scss';
-import '../Styles/animations.scss';
 import Information from '../Components/Information';
 import ProjectSlider from '../Components/ProjectSlider';
 import HomeSidebar from '../Components/HomeSidebar';
@@ -20,9 +18,9 @@ function Home() {
                 </div>
 
                 <div className="home-content__content">
-                <div class="bg"></div>
-                <div class="bg bg2"></div>
-                <div class="bg bg3"></div>
+                <div className="bg"></div>
+                <div className="bg bg2"></div>
+                <div className="bg bg3"></div>
                     <Switch>
                         <Route exact path="/">
 

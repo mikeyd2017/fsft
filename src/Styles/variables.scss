@@ -4,9 +4,4 @@ $off-white: #f3f3f3;
 $mid-gray: #1a1a1b;
 $dark-gray: #121212;
 
-
-@mixin breakpoint($point) {
-      @media (max-width: $point) {
-          @content;
-      }
-}
+$small-laptop: 1100px;

@@ -2,7 +2,6 @@ import { useEffect, useState, useLayoutEffect, useCallback} from "react";
 import Project from '../Components/Project';
 import {AiFillCaretLeft, AiFillCaretRight} from 'react-icons/ai';
 import { IconContext } from "react-icons";
-import '../Styles/project-slider.scss';
 
 function ProjectSlider() {
     const [projects, setProjects] = useState([]);
@@ -12,7 +11,7 @@ function ProjectSlider() {
     let [projectCount, setProjectCount] = useState(0);
     const [status, setStatus] = useState('idle');
     const [maxProjectCount, setMaxProjectCount] = useState(0);
-
+    
     useEffect(()=> {
         setMaxProjectCount(projects.length);
     }, [projects]);
