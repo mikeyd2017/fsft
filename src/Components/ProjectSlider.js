@@ -4,19 +4,15 @@ import {AiFillCaretLeft, AiFillCaretRight} from 'react-icons/ai';
 import { IconContext } from "react-icons";
 
 function ProjectSlider() {
-    const [projects, setProjects] = useState([]);
-    const [projectWidth, setProjectWidth] = useState(0);
     const [projectHeight, setProjectHeight] = useState(0);
+    const [projectWidth, setProjectWidth] = useState(0);
     const [sliderMargin, setSliderTopMargin] = useState(0);
-    let [projectCount, setProjectCount] = useState(0);
-    const [status, setStatus] = useState('idle');
+    const [projects, setProjects] = useState([]);
     const [maxProjectCount, setMaxProjectCount] = useState(0);
-    
-    useEffect(()=> {
-        setMaxProjectCount(projects.length);
-    }, [projects]);
+    const [projectCount, setProjectCount] = useState(0);
+    const [status, setStatus] = useState('idle');
 
-    const setProjectSize = useCallback(()=>{
+    const setLayoutProjectSize = useCallback(()=>{
         let projectDiv = document.querySelector('.projectslider-content__project');
         let divWidth = projectDiv.clientWidth;
         let divHeight = projectDiv.clientHeight;
@@ -24,15 +20,20 @@ function ProjectSlider() {
         setProjectHeight(divHeight);
         setProjectWidth(divWidth);
 
-        setSliderTopMargin(-(projectCount * divHeight))
-    });
+        return divHeight;
+    },[]);
 
     useLayoutEffect(()=> {
-        setProjectSize();
-    }, [setProjectSize]);
+        setLayoutProjectSize();
+    },[setLayoutProjectSize]);
+
+    const setProjectSize = () => {
+        let divHeight = setLayoutProjectSize();
+        setSliderTopMargin(-(projectCount * divHeight));
+    };
 
     window.addEventListener('resize', setProjectSize);
-
+    
     const getProjects = async () => {
         await fetch('projects.json',
         {
@@ -52,7 +53,27 @@ function ProjectSlider() {
     useEffect(()=> {
         setStatus('fetching');
         setTimeout(getProjects, 450);
-    }, []);
+    },[]);
+    
+    useEffect(()=> {
+        setMaxProjectCount(projects.length);
+    },[projects]);
+
+    const moveSliderUp=()=> {
+        if (projectCount > 0)
+        {
+            setSliderTopMargin(sliderMargin + projectHeight);
+            setProjectCount(projectCount - 1);
+        }
+    }
+
+    const moveSliderDown=()=> {
+        if(projectCount < maxProjectCount - 1)
+        {
+            setSliderTopMargin(sliderMargin - projectHeight);
+            setProjectCount(projectCount + 1);
+        } 
+    }
 
     useEffect(()=> {
         const setContainerTopMargin=()=> {
@@ -61,22 +82,6 @@ function ProjectSlider() {
         }
         setContainerTopMargin();
     },[sliderMargin]);
-
-    const moveSliderUp=()=> {
-        if (projectCount > 0)
-        {
-            setSliderTopMargin(sliderMargin + projectHeight);
-            setProjectCount(projectCount -= 1);
-        }
-    }
-
-    const moveSliderDown=()=> {
-        if(projectCount < maxProjectCount - 1)
-        {
-            setSliderTopMargin(sliderMargin - projectHeight);
-            setProjectCount(projectCount += 1);
-        } 
-    }
     
     return (
         <div className="projectslider-content">
