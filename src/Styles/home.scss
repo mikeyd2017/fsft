@@ -70,10 +70,6 @@
                     @include breakpoint($small-laptop) {
                         width: 100%;
                         text-align: center;
-
-                        &:nth-of-type(3) > li > svg {
-                            margin-left: -3px;
-                        }
                     }        
                     
                     &:last-of-type > li {
@@ -89,6 +85,7 @@
                             padding-left: 0px;
                             padding-bottom: 5px;
                             width: 100%;
+                            transform: translateX(-25%);
                         }
                     }
 
