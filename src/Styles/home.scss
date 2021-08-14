@@ -6,8 +6,8 @@
     width: 90vw; /* 90% of viewport vidth */
     height: 50.625vw; /* ratio = 9/16 * 90 = 50.625 */
     background: $dark-blue;
-    max-height: 90vh;
-    max-width: 160vh; /* 16/9 * 90 = 160 */
+    max-height: 720px;
+    max-width: 1280px; /* 16/9 * 90 = 160 */
     margin: auto;
     position: absolute;
     top:0;bottom:0;left:0;right:0;
@@ -16,10 +16,10 @@
     &__sidebar {
         height: 100%;
         display: block;
-        background-color: $light-blue;
+        background-color: rgba(66, 73, 101, 0.1);
         width: auto;
         float: left;
-        opacity: 1 !important;
+        opacity: 1;
         position: relative;
         &-content {
             height: calc(100%);
@@ -27,10 +27,28 @@
             &__linklist {
                 list-style: none;
                 text-decoration: none;
+                display: flex;
+                flex-direction: column;
+
+                &-homeButton {
+                    &:hover, &:active, &:focus, &:target {
+                        background-color: $blue2
+                    }
+                }
+                &-projectButton {
+                    &:hover, &:active, &:focus, &:target {
+                        background-color: $red1
+                    }
+                }
+                &-contactButton {
+                    &:hover, &:active, &:focus, &:target {
+                        background-color: $green3
+                    }
+                }
 
                 & > a {
                     font-weight: 200;
-                    font-size: calc(16px + .5vw);
+                    font-size: calc(16px + .35vw);
                     color: $off-white;
 
                     &:nth-of-type(1) > li > span {
@@ -46,7 +64,7 @@
                         margin-left: 2px;
                     }
                     &:nth-of-type(3) > li > svg {
-                        margin-left: -2px;
+                        margin-left: 0px;
                     }
 
                     @include breakpoint($small-laptop) {
@@ -75,22 +93,18 @@
                     }
 
                     & > li {
-                        padding-top: 2.5px;
-                        padding-bottom: 2.5px;
+                        padding-top: 9.5px;
+                        padding-bottom: 9.5px;
                         padding-left: 10px;
-                        padding-right: calc(5px + .4vw);
+                        padding-right: calc(5px + 1.75vw);
                         width: auto;
+                        align-items: center;
+                        display: flex;
 
                         @include breakpoint($small-laptop) {
                             padding-left: 10px;
                             padding-right: 10px;
                             padding-bottom: 7px;
-                        }
-
-                        &:hover {
-                            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5,#e73c7e, #ee7752);
-                            background-size: 2000% 2000%;
-                            animation: gradient 17s ease infinite;
                         }
 
                         & > svg {
@@ -100,6 +114,8 @@
                         & > span {
                             margin-left: 7px;
                             vertical-align: middle;
+                            font-size: calc(10px + .395vw);
+                            font-weight: 500;
                             
                             @include breakpoint($small-laptop) {
                                 display: none;
@@ -115,6 +131,13 @@
         overflow:hidden;
         width: auto;
         height: 100%;
+        border:none;
+        border-left: 5px solid $blue2;
+        -webkit-box-shadow: inset 0 7.5px 0 $blue2, inset 0 -20px 0px 0px $blue2;
+        -moz-box-shadow: inset 0 7.5px 0 $blue2, inset 0 -20px 0px 0px $blue2;
+        -webkit-box-shadow: inset 0 7.5px 0 $blue2, inset 0 -20px 0px 0px $blue2;
+        box-shadow: inset 0 7.5px 0 $blue2, inset 0 -20px 0px 0px $blue2;
+
     }
 }
 

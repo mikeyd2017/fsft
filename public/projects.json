@@ -12,22 +12,22 @@
         },
         {
             "name" : "TestProject3",
-            "description": "testProject2 description"
+            "description": "testProject3 description"
             
         },
         {
             "name" : "TestProject4",
-            "description": "testProject2 description"
+            "description": "testProject4 description"
             
         },
         {
             "name" : "TestProject5",
-            "description": "testProject2 description"
+            "description": "testProject5 description"
             
         },
         {
             "name" : "TestProject6",
-            "description": "testProject2 description"
+            "description": "testProject6 description"
             
         }
     ]

@@ -3,7 +3,7 @@ import Project from '../Components/Project';
 import {AiFillCaretLeft, AiFillCaretRight} from 'react-icons/ai';
 import { IconContext } from "react-icons";
 
-function ProjectSlider() {
+function ProjectSlider(props) {
     const [projectHeight, setProjectHeight] = useState(0);
     const [projectWidth, setProjectWidth] = useState(0);
     const [sliderMargin, setSliderTopMargin] = useState(0);
@@ -82,7 +82,7 @@ function ProjectSlider() {
         }
         setContainerTopMargin();
     },[sliderMargin]);
-    
+
     return (
         <div className="projectslider-content">
             <div className="projectslider-content__menu">
@@ -91,13 +91,12 @@ function ProjectSlider() {
 
             <div className="projectslider-content__project">
                 {status === "fetching" && <div id="spinner"></div>}
-                <button className="projectslider-content__project-leftbutton arrows-fade-in" onClick={moveSliderUp}><IconContext.Provider value={{ color: '#424965f8'}}><AiFillCaretLeft/></IconContext.Provider></button>
-                <button className="projectslider-content__project-rightbutton arrows-fade-in" onClick={moveSliderDown}><IconContext.Provider value={{ color: '#424965f8'}}><AiFillCaretRight/></IconContext.Provider></button>
+                <button className="projectslider-content__project-leftbutton arrows-fade-in" onClick={moveSliderUp}><IconContext.Provider value={{ color: props.appColor}}><AiFillCaretLeft/></IconContext.Provider></button>
+                <button className="projectslider-content__project-rightbutton arrows-fade-in" onClick={moveSliderDown}><IconContext.Provider value={{ color: props.appColor}}><AiFillCaretRight/></IconContext.Provider></button>
                 <div className="projectslider-content__project-container">
                     {status === "processed" && projects && projects.length > 0 && projects.map((project)=> <Project {...project} key={project.name} height={projectHeight} width={projectWidth}/>) }
                 </div>
             </div>
-            
         </div>
     )
 }
