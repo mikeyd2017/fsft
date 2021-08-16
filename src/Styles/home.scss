@@ -51,19 +51,23 @@
                     font-size: calc(16px + .35vw);
                     color: $off-white;
 
-                    &:nth-of-type(1) > li > span {
+                    &:nth-of-type(1) > li > div > span {
                         margin-left: 9px;
                     }
-                    &:nth-of-type(3) > li > span {
+                    &:nth-of-type(2) > li > div >  span {
+                        padding-top: 1px;
+                    }
+                    &:nth-of-type(3) > li > div >  span {
+                        margin-left: 9px;
+                        padding-top: 0px;
+                    }
+                    &:nth-of-type(4) > li > div > span {
                         margin-left: 9px;
                     }
-                    &:nth-of-type(4) > li > span {
-                        margin-left: 9px;
-                    }
-                    &:nth-of-type(2) > li > svg {
+                    &:nth-of-type(2) > li > div > svg {
                         margin-left: 2px;
                     }
-                    &:nth-of-type(3) > li > svg {
+                    &:nth-of-type(3) > li > div > svg {
                         margin-left: 0px;
                     }
 
@@ -103,16 +107,22 @@
                             padding-right: 10px;
                             padding-bottom: 7px;
                         }
+                        & > div {
+                            width: auto;
+                            align-items: center;
+                            display: flex;
+                        }
 
-                        & > svg {
+                        & > div > svg {
                             vertical-align: middle;
                         }
     
-                        & > span {
+                        & > div > span {
                             margin-left: 7px;
                             vertical-align: middle;
                             font-size: calc(10px + .395vw);
                             font-weight: 500;
+                            padding-top: 2.2px;
                             
                             @include breakpoint($small-laptop) {
                                 display: none;
@@ -156,4 +166,9 @@
   
 .bg3 {
     animation-duration:11s;
+}
+
+.link-container {
+    height: 100%;
+    width: 100%;
 }
