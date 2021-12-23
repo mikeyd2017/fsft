@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
-import {ImBooks} from 'react-icons/im';
+import { ImBooks } from 'react-icons/im';
 import { IconContext } from "react-icons";
 import { IoHome } from "react-icons/io5";
-import {HiInformationCircle} from 'react-icons/hi';
-import {RiContactsBook2Fill} from 'react-icons/ri';
-import {createUseStyles} from 'react-jss';
-import {useState, useEffect} from 'react';
+import { HiInformationCircle } from 'react-icons/hi';
+import { RiContactsBook2Fill } from 'react-icons/ri';
+import { createUseStyles } from 'react-jss';
+import { useState, useEffect } from 'react';
 import $ from 'jquery';
 
 
@@ -33,7 +33,15 @@ export default function HomeSidebar(props) {
                 boxShadow: `inset 3.5px 0px 0 ${theme.appColorOnHover}`,
                 fontWeight: '600 !important'
             }
-        }
+        },
+        '@keyframes linkSlide': {
+            from: { marginLeft: 0 },
+            to: { marginLeft: 200 }
+        },
+        linkSlideAnimation: {
+            animationName: '$linkSlide',
+            zIndex: 1000
+        },
     }));
 
     function removeAllButtonColor() {
@@ -41,10 +49,6 @@ export default function HomeSidebar(props) {
         $('#project-btn').removeClass();
         $('#contact-btn').removeClass();
         $('#info-btn').removeClass();
-        $('#home-btn').addClass('home-content__sidebar-content__linklist-homeButton');
-        $('#project-btn').addClass('home-content__sidebar-content__linklist-projectButton');
-        $('#contact-btn').addClass('home-content__sidebar-content__linklist-contactButton');
-        $('#info-btn').addClass('home-content__sidebar-content__linklist-informationButton');
     }
 
     const classes = useStylesFromThemeFunction(props);
@@ -94,18 +98,58 @@ export default function HomeSidebar(props) {
         $('#home-btn').addClass(classes.backgroundColor);
     }, []);
 
+    function triggerPageSlide(e) {
+        const slideDiv = e.target.closest('li').nextElementSibling;
+        $(slideDiv).addClass(classes.linkSlideAnimation);
+    }
+
     return (
-        <div className="home-content__sidebar-content">
-           <div className='home-content__sidebar-content__portrait'>
-                
+        <div className="sidebar">
+            <div className='portrait'>
+
             </div>
-            <ul className="home-content__sidebar-content__linklist">
-                <Link to="/"><li className="home-content__sidebar-content__linklist-homeButton" id='home-btn' onMouseEnter={() => {props.setAppColorOnHover(blue)}} onMouseLeave={() => {props.setAppColorOnHover('')}} onClick={() => {props.setAppColor(blue); setCurrentPage(1);}}><div className="link-container"><IconContext.Provider value={{ color: iconColors.homeIconColor}}><IoHome/></IconContext.Provider><span>Home</span></div></li></Link>
-                <Link to="/project-slider"><li className="home-content__sidebar-content__linklist-projectButton" id='project-btn' onMouseEnter={() => {props.setAppColorOnHover(red)}} onMouseLeave={() => {props.setAppColorOnHover('')}} onClick={() => {props.setAppColor(red); setCurrentPage(2);}}><div className="link-container"><IconContext.Provider value={{ color: iconColors.projectIconColor}}><ImBooks/></IconContext.Provider><span>Projects</span></div></li></Link>
-                <Link to="/contact"><li className="home-content__sidebar-content__linklist-contactButton" id='contact-btn' onMouseEnter={() => {props.setAppColorOnHover(green)}} onMouseLeave={() => {props.setAppColorOnHover('')}} onClick={() => {props.setAppColor(green); setCurrentPage(3);}}><div className="link-container"><IconContext.Provider value={{ color: iconColors.contactIconColor}}><RiContactsBook2Fill/></IconContext.Provider><span>Contact</span></div></li></Link>
-                <Link to="/information"><li id='info-btn'><IconContext.Provider value={{ color: props.appColor}}><HiInformationCircle/></IconContext.Provider><span></span></li></Link>
+            <ul className="link-list">
+                <Link to="/">
+                    <li className="home-button" id='home-btn' onMouseEnter={() => { props.setAppColorOnHover(blue) }} onMouseLeave={() => { props.setAppColorOnHover('') }} onClick={(e) => { props.setAppColor(blue); setCurrentPage(1); triggerPageSlide(e); }}>
+                        <div className="link-container"><IconContext.Provider value={{ color: iconColors.homeIconColor }}><IoHome /></IconContext.Provider>
+                            <span>Home</span>
+                        </div>
+                    </li>
+                    <div id='slideDiv'></div>
+                </Link>
+                <Link to="/project-slider">
+                    <li className="project-button" id='project-btn' onMouseEnter={() => { props.setAppColorOnHover(red) }} onMouseLeave={() => { props.setAppColorOnHover('') }} onClick={(e) => { props.setAppColor(red); setCurrentPage(2); triggerPageSlide(e); }}>
+                        <div className="link-container">
+                            <IconContext.Provider value={{ color: iconColors.projectIconColor }}>
+                                <ImBooks />
+                            </IconContext.Provider>
+                            <span>Projects</span>
+                        </div>
+                    </li>
+                    <div id='slideDiv'></div>
+                </Link>
+                <Link to="/contact">
+                    <li className="contact-button" id='contact-btn' onMouseEnter={() => { props.setAppColorOnHover(green) }} onMouseLeave={() => { props.setAppColorOnHover('') }} onClick={(e) => { props.setAppColor(green); setCurrentPage(3); triggerPageSlide(e); }}>
+                        <div className="link-container">
+                            <IconContext.Provider value={{ color: iconColors.contactIconColor }}>
+                                <RiContactsBook2Fill />
+                            </IconContext.Provider>
+                            <span>Contact</span>
+                        </div>
+                    </li>
+                    <div id='slideDiv'></div>
+                </Link>
+                <Link to="/information">
+                    <li id='info-btn'>
+                        <IconContext.Provider value={{ color: props.appColor }}>
+                            <HiInformationCircle />
+                        </IconContext.Provider>
+                        <span>
+                        </span>
+                    </li>
+                </Link>
             </ul>
-            <div style={{ clear: 'both'}}></div>
+            <div style={{ clear: 'both' }}></div>
         </div>
     );
 }

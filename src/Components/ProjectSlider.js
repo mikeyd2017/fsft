@@ -13,14 +13,16 @@ function ProjectSlider(props) {
     const [status, setStatus] = useState('idle');
 
     const setLayoutProjectSize = useCallback(()=>{
-        let projectDiv = document.querySelector('.projectslider-content__project');
-        let divWidth = projectDiv.clientWidth;
-        let divHeight = projectDiv.clientHeight;
-
-        setProjectHeight(divHeight);
-        setProjectWidth(divWidth);
-
-        return divHeight;
+        let projectDiv = document.querySelector('.projects-container');
+        if (projectDiv) {
+            let divWidth = projectDiv.clientWidth;
+            let divHeight = projectDiv.clientHeight;
+    
+            setProjectHeight(divHeight);
+            setProjectWidth(divWidth);
+    
+            return divHeight;
+        }
     },[]);
 
     useLayoutEffect(()=> {
@@ -77,23 +79,31 @@ function ProjectSlider(props) {
 
     useEffect(()=> {
         const setContainerTopMargin=()=> {
-            let projectContainer = document.querySelector('.projectslider-content__project-container');
+            let projectContainer = document.querySelector('.project-container');
             projectContainer.setAttribute("style", "margin-top: " + sliderMargin + "px;");
         }
         setContainerTopMargin();
     },[sliderMargin]);
 
     return (
-        <div className="projectslider-content">
-            <div className="projectslider-content__menu">
+        <div className="project-slider">
+            <div className="menu">
 
             </div>
 
-            <div className="projectslider-content__project">
+            <div className="projects-container">
                 {status === "fetching" && <div id="spinner"></div>}
-                <button className="projectslider-content__project-leftbutton arrows-fade-in" onClick={moveSliderUp}><IconContext.Provider value={{ color: props.appColor}}><AiFillCaretLeft/></IconContext.Provider></button>
-                <button className="projectslider-content__project-rightbutton arrows-fade-in" onClick={moveSliderDown}><IconContext.Provider value={{ color: props.appColor}}><AiFillCaretRight/></IconContext.Provider></button>
-                <div className="projectslider-content__project-container">
+                <button className="left-button arrows-fade-in" onClick={moveSliderUp}>
+                    <IconContext.Provider value={{ color: props.appColor}}>
+                        <AiFillCaretLeft/>
+                    </IconContext.Provider>
+                </button>
+                <button className="right-button arrows-fade-in" onClick={moveSliderDown}>
+                    <IconContext.Provider value={{ color: props.appColor}}>
+                        <AiFillCaretRight/>
+                    </IconContext.Provider>
+                </button>
+                <div className="project-container">
                     {status === "processed" && projects && projects.length > 0 && projects.map((project)=> <Project {...project} key={project.name} height={projectHeight} width={projectWidth}/>) }
                 </div>
             </div>

@@ -2,8 +2,8 @@
 import HomeSidebar from './HomeSidebar';
 import Information from './Information';
 import ProjectSlider from './ProjectSlider';
+import MobileMenu from './MobileMenu';
 import {createUseStyles} from 'react-jss';
-import {useEffect, useState} from 'react';
 import {
     BrowserRouter as Router,
     Switch,
@@ -28,34 +28,38 @@ function Home(props) {
     const classes = useStylesFromThemeFunction(props);
 
     return (
+        <>
+            <div className={`bg ` + classes.backgroundImageColor}></div>
+            <div className={`bg bg2 ` + classes.backgroundImageColor}></div>
+            <div className={`bg bg3 ` + classes.backgroundImageColor}></div>
+            
             <Router>
+                <MobileMenu setAppColor={props.setAppColor} appColor={props.appColor} setAppColorOnHover={props.setAppColorOnHover} appColorOnHover={props.appColorOnHover} />
+
                 <div className='home-content'>
-                    <div className="home-content__sidebar">
+                    <div className="sidebar-container">
                         <HomeSidebar setAppColor={props.setAppColor} appColor={props.appColor} setAppColorOnHover={props.setAppColorOnHover} appColorOnHover={props.appColorOnHover} />
                     </div>
 
-                    <div className={`home-content__content ` + classes.appBorderColor}>
-                    <div className={`bg ` + classes.backgroundImageColor}></div>
-                    <div className={`bg bg2 ` + classes.backgroundImageColor}></div>
-                    <div className={`bg bg3 ` + classes.backgroundImageColor}></div>
-                    <Switch>
-                        <Route exact path="/">
+                    <div className={`content ` + classes.appBorderColor}>
+                        <Switch>
+                            <Route exact path="/">
 
-                        </Route>
-                        <Route exact path="/information">
-                            <Information />
-                        </Route>
-                        <Route exact path="/project-slider">
-                            <ProjectSlider appColor={props.appColor}/>
-                        </Route>
-                    </Switch>
+                            </Route>
+                            <Route exact path="/information">
+                                <Information />
+                            </Route>
+                            <Route exact path="/project-slider">
+                                <ProjectSlider appColor={props.appColor}/>
+                            </Route>
+                        </Switch>
                     </div>
-                    <div className="home-content__breadcrumbs">
+                    <div className="breadcrumbs">
 
                     </div>
                 </div>
             </Router>
-
+        </>
     );
 }
 

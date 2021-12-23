@@ -1,0 +1,62 @@
+.mobile {
+    height: 100vh;
+    width: 100vw;
+
+    .menu {
+        position: relative;
+        display: block;
+        height: 100px;
+        width: 100%;
+
+        .mobile-links {
+            ul {
+                display: block;
+                text-align: center;
+                width: 450px;
+                margin: auto;
+                padding-top: 18px;
+
+                li {
+                    cursor: pointer;
+                    border-radius: 4px;
+                    display: inline-block;
+                    margin: 0px 10px;
+
+                    &:first-of-type {
+                        margin-top: 0px;
+                    }
+
+                    &:nth-of-type(2) {
+                        a {
+                            padding-right: 8px;
+                        }
+                    }
+
+                    a {
+                        padding: 6px 10px;
+                        padding-bottom: 2px;
+                        color: white;
+                        font-size: 40px;
+                        display: block;
+                    }
+                }
+            }
+
+            .mobile-icons {
+                position: relative;
+                float: right;
+                width: 40px;
+                height: 40px;
+                display: flex;
+                text-align: center;
+
+                svg {
+                    position: absolute;
+                    top: 50%;
+                    right: 50%;
+                    transform: translateX(50%) translateY(-50%);
+                }
+            }
+        }
+    }
+}
