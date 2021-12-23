@@ -1,11 +1,11 @@
-import {AiOutlineMenu, AiOutlineClose} from 'react-icons/ai';
+import {AiFillCaretUp, AiFillCaretDown} from 'react-icons/ai';
 import { ImBooks } from 'react-icons/im';
 import { IoHome } from "react-icons/io5";
 import { HiInformationCircle } from 'react-icons/hi';
 import { RiContactsBook2Fill } from 'react-icons/ri';
 import { Link } from "react-router-dom";
 import { createUseStyles } from 'react-jss';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { IconContext } from "react-icons";
 import $ from 'jquery';
 
@@ -100,19 +100,47 @@ function MobileMenu(props) {
         $(slideDiv).addClass(classes.linkSlideAnimation);
     }
 
+    function useDidUpdateEffect(fn, inputs) {
+        const didMountRef = useRef(false);
+      
+        useEffect(() => {
+          if (didMountRef.current)
+            return fn();
+          else
+            didMountRef.current = true;
+        }, inputs);
+      }
+
     const [menuOpen, setMenuOpen] = useState(false);
 
+    function triggerMobileMenu() {
+        let mobileLinks = $('.mobile-links');
+        let mobileLinksLI = mobileLinks.children('li');
+        mobileLinksLI.css('display', 'inline-block');
+
+        if (menuOpen)
+        {
+            mobileLinksLI.css('margin-top', '-100px');
+            mobileLinksLI.css('animation-name', 'mobileSlideDown');
+        } else {
+            mobileLinksLI.css('margin-top', '0px');
+            mobileLinksLI.css('animation-name', 'mobileSlideUp');
+        }
+    }
+
+    useDidUpdateEffect(() => {
+        triggerMobileMenu();
+    }, [menuOpen]);
 
     return (
             <div className='mobile'>
                 <div className='menu'>                
-                    <div className='mobile-links'>
-                        <div className='mobile-icons' onClick={(e) => setMenuOpen(!menuOpen)}>
-                            {menuOpen ? <AiOutlineClose></AiOutlineClose> : <AiOutlineMenu></AiOutlineMenu>}
+                    <div className='mobile-link-container'>
+                        <div className='menu-icons' onClick={(e) => { setMenuOpen(!menuOpen); }}>
+                            {menuOpen ? <AiFillCaretUp></AiFillCaretUp> : <AiFillCaretDown></AiFillCaretDown>}
                         </div>
-                        {menuOpen ?
-                        <ul>
-                            <li id='mobile-home-btn' onMouseEnter={() => { props.setAppColorOnHover(blue) }} onMouseLeave={() => { props.setAppColorOnHover('') }} onClick={(e) => { props.setAppColor(blue); setCurrentPage(1); triggerPageSlide(e); }}>
+                        <ul className='mobile-links'>
+                            <li id='mobile-home-btn' onMouseEnter={() => { props.setAppColorOnHover(blue); }} onMouseLeave={() => { props.setAppColorOnHover(''); }} onClick={(e) => { props.setAppColor(blue); setCurrentPage(1); triggerPageSlide(e); }}>
                                 <Link to="/">
                                     <IconContext.Provider value={{ color: iconColors.homeIconColor }}>
                                         <IoHome />
@@ -141,7 +169,6 @@ function MobileMenu(props) {
                                 </Link>
                             </li>
                         </ul>
-                        : ''}
                     </div>
                 </div>
             </div>

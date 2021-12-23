@@ -14,8 +14,9 @@
     left: 0;
     right: 0;
     opacity: 1;
+    transition: .5s;
 
-    @include breakpoint($small-laptop) {
+    @include breakpoint-max($tablet) {
         background: none;
     }
 
@@ -27,7 +28,7 @@
         opacity: 1;
         position: relative;
 
-        @include breakpoint($small-laptop) {
+        @include breakpoint-max($tablet) {
             display: none;
         }
 
@@ -95,6 +96,12 @@
                         padding-right: 10px;
                     }
 
+                    #info-btn {
+                        & svg {
+                            transition: .5s;
+                        }
+                    }
+
                     &>li {
                         padding-top: 9.5px;
                         padding-bottom: 9.5px;
@@ -103,6 +110,7 @@
                         width: auto;
                         align-items: center;
                         display: flex;
+                        transition: .5s;
 
                         &>div {
                             width: auto;
@@ -112,6 +120,7 @@
 
                         &>div>svg {
                             vertical-align: middle;
+                            transition: .5s;
                         }
 
                         &>div>span {
@@ -131,8 +140,9 @@
         overflow: hidden;
         width: auto;
         height: 100%;
+        transition: .5s;
 
-        @include breakpoint($small-laptop) {
+        @include breakpoint-max($tablet) {
             box-shadow: none;
             border: none;
         }

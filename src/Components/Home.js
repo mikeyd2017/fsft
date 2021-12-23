@@ -29,6 +29,7 @@ function Home(props) {
 
     return (
         <>
+            <div id='inDevelopment'><p>IN DEVELOPMENT</p></div>
             <div className={`bg ` + classes.backgroundImageColor}></div>
             <div className={`bg bg2 ` + classes.backgroundImageColor}></div>
             <div className={`bg bg3 ` + classes.backgroundImageColor}></div>

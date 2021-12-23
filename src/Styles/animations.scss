@@ -81,3 +81,25 @@
     transform: translateX(25%);
   }
 }
+
+@keyframes mobileSlideDown {
+  0% {
+    display: inline-block;
+    margin-top: -100px;
+  }
+
+  100% {
+    margin-top: 0px;
+  }
+}
+
+@keyframes mobileSlideUp {
+  0% {
+    display: inline-block;
+    margin-top: 0px;
+  }
+
+  100% {
+    margin-top: -100px;
+  }
+}

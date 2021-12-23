@@ -1,29 +1,48 @@
 .mobile {
-    height: 100vh;
-    width: 100vw;
-
     .menu {
         position: relative;
         display: block;
         height: 100px;
         width: 100%;
 
-        .mobile-links {
-            ul {
-                display: block;
+        .mobile-link-container {
+
+            @include breakpoint-min($tablet) {
+                display: none;
+            }
+
+            .mobile-links {
+                display: flex;
                 text-align: center;
-                width: 450px;
+                max-width: 350px;
                 margin: auto;
                 padding-top: 18px;
+                justify-content: space-evenly;
+
+                @include breakpoint-max($phone) {
+                    max-width: 200px;
+                }
+
+                @for $i from 1 through 4 {
+                    & li:nth-child(#{$i}) {
+                        -webkit-animation-delay:(#{$i*0.1s});
+                        animation-delay:(#{$i*0.1s});
+                    }
+                }
 
                 li {
+                    animation-fill-mode: forwards;
+                    animation-duration: .75s;
+                    display: none;
                     cursor: pointer;
                     border-radius: 4px;
-                    display: inline-block;
                     margin: 0px 10px;
+                    max-height: 55px;
+                    z-index: 1;
+                    transition: .5s;
 
-                    &:first-of-type {
-                        margin-top: 0px;
+                    @include breakpoint-max($phone) {
+                        margin: 0 5px;
                     }
 
                     &:nth-of-type(2) {
@@ -34,27 +53,40 @@
 
                     a {
                         padding: 6px 10px;
-                        padding-bottom: 2px;
+                        padding-bottom: 0px;
                         color: white;
                         font-size: 40px;
                         display: block;
+
+                        & svg {
+                            transition: .5s;
+                        }
                     }
                 }
             }
 
-            .mobile-icons {
-                position: relative;
-                float: right;
-                width: 40px;
-                height: 40px;
+            .menu-icons {
+                position: absolute;
+                top: 20px;
+                right: 20px;
                 display: flex;
-                text-align: center;
+                justify-content: center;
+                align-items: center;
+                height: 40px;
+                width: 40px;
+                background-color: $dark-blue;
+                opacity: 70%;
+                border-radius: 6px;
+                transition: .5s;
+
+                &:hover {
+                    cursor: pointer;
+                    opacity: 90%;
+                    background-color: $light-blue;
+                }
 
                 svg {
-                    position: absolute;
-                    top: 50%;
-                    right: 50%;
-                    transform: translateX(50%) translateY(-50%);
+                    color: white;
                 }
             }
         }
