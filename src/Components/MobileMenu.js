@@ -1,6 +1,5 @@
-import {AiFillCaretUp, AiFillCaretDown} from 'react-icons/ai';
 import { ImBooks } from 'react-icons/im';
-import { IoHome } from "react-icons/io5";
+import { IoHome, IoCaretUp, IoCaretDown } from "react-icons/io5";
 import { HiInformationCircle } from 'react-icons/hi';
 import { RiContactsBook2Fill } from 'react-icons/ri';
 import { Link } from "react-router-dom";
@@ -116,7 +115,12 @@ function MobileMenu(props) {
     function triggerMobileMenu() {
         let mobileLinks = $('.mobile-links');
         let mobileLinksLI = mobileLinks.children('li');
+        let mobileMenu = $('.menu-icons');
+
+        mobileMenu.children('svg').css('transform', 'rotate(180deg)');
+
         mobileLinksLI.css('display', 'inline-block');
+
 
         if (menuOpen)
         {
@@ -137,7 +141,7 @@ function MobileMenu(props) {
                 <div className='menu'>                
                     <div className='mobile-link-container'>
                         <div className='menu-icons' onClick={(e) => { setMenuOpen(!menuOpen); }}>
-                            {menuOpen ? <AiFillCaretUp></AiFillCaretUp> : <AiFillCaretDown></AiFillCaretDown>}
+                            {menuOpen ? <IoCaretUp></IoCaretUp> : <IoCaretDown></IoCaretDown>}
                         </div>
                         <ul className='mobile-links'>
                             <li id='mobile-home-btn' onMouseEnter={() => { props.setAppColorOnHover(blue); }} onMouseLeave={() => { props.setAppColorOnHover(''); }} onClick={(e) => { props.setAppColor(blue); setCurrentPage(1); triggerPageSlide(e); }}>
